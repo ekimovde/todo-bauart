@@ -1,0 +1,32 @@
+@import "@/assets/styles/variables.scss";
+
+.task-item {
+  border-bottom: 1px solid #e3e3e3;
+  @extend %flex-center-top;
+  padding-bottom: 23px;
+  padding-left: 70px;
+  padding-right: 30px;
+  margin-bottom: 25px;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .task-item__btn {
+    margin-right: 20px;
+  }
+
+  .task-item__descr {
+    width: 640px;
+    color: #454545;
+    font-weight: 300;
+    line-height: 25px;
+    font-size: 18px;
+  }
+
+  .task-item__tags {
+    flex-wrap: wrap;
+    margin-left: 14px;
+  }
+}

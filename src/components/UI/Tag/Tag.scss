@@ -1,0 +1,51 @@
+@import "@/assets/styles/variables.scss";
+
+.tag {
+  @extend %flex-center;
+  margin-right: 19px;
+  margin-bottom: 8px;
+  cursor: pointer;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .tag__circle {
+    width: 13px;
+    height: 13px;
+    border-radius: 50px;
+    margin-right: 7px;
+
+    &.tag__circle_yellow {
+      background-color: $yellow;
+    }
+
+    &.tag__circle_red {
+      background-color: $red;
+    }
+
+    &.tag__circle_blue {
+      background-color: $blue;
+    }
+
+    &.tag__circle_green {
+      background-color: $green;
+    }
+
+    &.tag__circle_orange {
+      background-color: $orange;
+    }
+
+    &.tag__circle_dark-blue {
+      background-color: $dark-blue;
+    }
+  }
+
+  .tag__text {
+    color: $blue-text;
+
+    &:hover {
+      color: $blue-text-hover;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+$white: #fff;
+$red: #cf120c;
+$green: #3f8e00;
+$yellow: #ffec43;
+$blue: #6bb8ff;
+$orange: #fa8f00;
+$dark-blue: #2e486c;
+
+$backg-grey-light: #fafafa;
+$backg-grey-dark: #727272;
+$backg-circle-grey: #cccccc;
+$backg-form-white: #fafafa;
+
+$blue-text: #298ed4;
+$green-text: #3f8e00;
+$grey-text: #b4b4b4;
+
+$blue-text-hover: #1569a5;
+$green-text-hover: #326d02;
+
+$border-grey-light: #e3e3e3;
+
+%flex-center {
+  display: flex;
+  align-items: center;
+}
+
+%flex-center-top {
+  display: flex;
+  align-items: flex-start;
+}
+
+%flex-center-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+%flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-center-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
