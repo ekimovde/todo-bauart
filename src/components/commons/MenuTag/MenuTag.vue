@@ -11,7 +11,7 @@
           ></i>
           <i
             class="bx bx-trash menu-tag__icon menu-tag__icon_del"
-            @click="onRemoveTag(item.id)"
+            @click="onRemoveTag(item)"
           />
         </div>
       </li>
@@ -79,6 +79,7 @@ export default {
         tag: "",
         color: "",
       },
+      idTag: "",
     };
   },
   props: {
@@ -99,6 +100,8 @@ export default {
     onClickEdit(item) {
       this.showEditModal = true;
 
+      this.idTag = item.id;
+
       this.newTag.id = item.id;
       this.newTag.tag = item.tag;
       this.newTag.color = item.color;
@@ -107,11 +110,18 @@ export default {
     onSubmitEditTag() {
       this.$store.dispatch("setEditTag", this.newTag);
 
+      this.$store.dispatch("setEditTagFromTask", {
+        idTag: this.idTag,
+        newTag: this.newTag,
+      });
+
       this.showEditModal = false;
     },
 
-    onRemoveTag(id) {
-      this.$store.dispatch("setRemoveTagById", id);
+    onRemoveTag(item) {
+      this.$store.dispatch("setRemoveTagById", item.id);
+
+      this.$store.dispatch("setRemoveTagFromTask", item.tag);
     },
   },
 };

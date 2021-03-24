@@ -3,6 +3,7 @@
     <div
       class="tag__circle"
       :class="{
+        tag__circle_default: item.color === 'default',
         tag__circle_yellow: item.color === 'yellow',
         tag__circle_red: item.color === 'red',
         tag__circle_blue: item.color === 'blue',
@@ -40,15 +41,13 @@ export default {
   methods: {
     onClickTag(item) {
       if (this.type === "menu") {
-        console.log("clickAdd:", item.id);
-
         this.tags.push({
           id: item.id,
           tag: item.tag,
           color: item.color,
         });
       } else if (this.type === "sort") {
-        console.log("sort:", item.id);
+        this.$store.dispatch("setSortTag", item.tag);
       }
     },
   },

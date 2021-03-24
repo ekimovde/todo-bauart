@@ -16,6 +16,10 @@
     border-radius: 50px;
     margin-right: 7px;
 
+    &.tag__circle_default {
+      background-color: $default;
+    }
+
     &.tag__circle_yellow {
       background-color: $yellow;
     }

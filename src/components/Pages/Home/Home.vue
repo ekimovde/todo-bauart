@@ -90,7 +90,7 @@
         v-if="loading"
       ></i>
 
-      <TaskList :taskList="taskList" v-if="!loading" />
+      <TaskList :taskList="filterListByTag" v-if="!loading" />
     </div>
   </div>
 </template>
@@ -147,6 +147,30 @@ export default {
 
     loading() {
       return this.$store.getters.getLoading;
+    },
+
+    sortTagName() {
+      return this.$store.getters.getSortTag;
+    },
+
+    filterListByTag() {
+      let task = this.taskList;
+      let tagName = this.sortTagName;
+
+      const sortFunc = (a, b) => {
+        if (a.status < b.status) return 1;
+        if (a.status > b.status) return -1;
+      };
+
+      const filterFunc = (event) => {
+        return event.tags.some((tmp) => tmp.tag.includes(tagName));
+      };
+
+      if (!tagName.length || tagName === "#") {
+        return task.sort(sortFunc);
+      }
+
+      return task.filter(filterFunc).sort(sortFunc);
     },
   },
   created() {

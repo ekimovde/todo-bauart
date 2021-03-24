@@ -1,5 +1,6 @@
 <template>
   <div class="tag-list">
+    <Tag :item="tagDefault" v-if="type === 'sort'" type="sort" />
     <Tag v-for="item in tagList" :key="item.id" :item="item" :type="type" />
   </div>
 </template>
@@ -12,6 +13,14 @@ export default {
   name: "TagList",
   components: {
     Tag,
+  },
+  data() {
+    return {
+      tagDefault: {
+        color: "default",
+        tag: "#",
+      },
+    };
   },
   props: {
     tagList: {
