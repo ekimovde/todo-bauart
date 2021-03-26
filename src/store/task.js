@@ -35,7 +35,7 @@ export default {
     },
   },
   actions: {
-    async setTaskList({ commit }, payload) {
+    async setTaskList({ commit }) {
       commit("changeLoading", true);
 
       const data = await axios
@@ -91,8 +91,8 @@ export default {
         .catch((error) => console.log(error));
     },
 
-    async setEditTagFromTask({ getters }, { idTag, newTag }) {
-      let tasks = getters.getTaskList;
+    async setEditTagFromTask({ state }, { idTag, newTag }) {
+      let tasks = state.taskList;
 
       tasks.forEach((task) => {
         for (let i = 0; i < task.tags.length; i++) {
@@ -113,16 +113,13 @@ export default {
         .catch((error) => console.log(error));
     },
 
-    async setRemoveTagFromTask({ getters }, nameTag) {
-      let tasks = getters.getTaskList;
-
-      console.log(nameTag);
+    async setRemoveTagFromTask({ state }, nameTag) {
+      let tasks = state.taskList;
 
       tasks.forEach((task) => {
         for (let i = 0; i < task.tags.length; i++) {
           if (task.tags[i].tag !== nameTag) continue;
 
-          console.log(1);
           task.tags.splice(i, 1);
 
           return task;
@@ -135,17 +132,6 @@ export default {
           if (data.status === 200) console.log("Тег успешно удален!");
         })
         .catch((error) => console.log(error));
-
-      console.log(tasks);
-    },
-  },
-  getters: {
-    getTaskList(state) {
-      return state.taskList;
-    },
-
-    getLoading(state) {
-      return state.loading;
     },
   },
 };

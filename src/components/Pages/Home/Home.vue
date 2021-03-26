@@ -96,6 +96,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import "./Home.scss";
 import InputTask from "@/components/commons/InputTask/InputTask";
 import TagList from "@/components/commons/TagList/TagList";
@@ -137,21 +138,12 @@ export default {
     };
   },
   computed: {
-    tagList() {
-      return this.$store.getters.getTagList;
-    },
-
-    taskList() {
-      return this.$store.getters.getTaskList;
-    },
-
-    loading() {
-      return this.$store.getters.getLoading;
-    },
-
-    sortTagName() {
-      return this.$store.getters.getSortTag;
-    },
+    ...mapState({
+      tagList: (state) => state.tag.tagList,
+      taskList: (state) => state.task.taskList,
+      loading: (state) => state.task.loading,
+      sortTagName: (state) => state.sort.sortTag,
+    }),
 
     filterListByTag() {
       let task = this.taskList;

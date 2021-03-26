@@ -12,9 +12,4 @@ export default {
       commit("changeSortTag", tag);
     },
   },
-  getters: {
-    getSortTag(state) {
-      return state.sortTag;
-    },
-  },
 };

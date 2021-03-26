@@ -32,7 +32,7 @@ export default {
     },
   },
   actions: {
-    async setTagList({ commit }, payload) {
+    async setTagList({ commit }) {
       const data = await axios
         .get("https://todo-20206-default-rtdb.firebaseio.com/tags/.json")
         .then(({ data }) => data)
@@ -95,12 +95,6 @@ export default {
             commit("changeEditTag", { id, tag, color });
           }
         });
-    },
-  },
-
-  getters: {
-    getTagList(state) {
-      return state.tagList;
     },
   },
 };
