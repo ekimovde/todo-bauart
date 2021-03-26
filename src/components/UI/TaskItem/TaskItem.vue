@@ -1,10 +1,10 @@
 <template>
   <div class="task-item">
     <div class="task-item__btn">
-      <RadioButton
+      <Checkbox
         :status="item.status"
         :id="item.id"
-        @onClick="onClickRadioBtn($event)"
+        @onClick="onClickCheckbox($event)"
       />
     </div>
 
@@ -20,13 +20,13 @@
 
 <script>
 import "./TaskItem.scss";
-import RadioButton from "@/components/UI/RadioButton/RadioButton";
+import Checkbox from "@/components/UI/Checkbox/Checkbox";
 import TagList from "@/components/commons/TagList/TagList";
 
 export default {
   name: "TaskItem",
   components: {
-    RadioButton,
+    Checkbox,
     TagList,
   },
   props: {
@@ -36,7 +36,7 @@ export default {
     },
   },
   methods: {
-    onClickRadioBtn(id) {
+    onClickCheckbox(id) {
       let status = !this.item.status;
 
       this.$store.dispatch("setCheckStatusTask", {
