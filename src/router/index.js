@@ -1,26 +1,26 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomePage from '../views/HomePage.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import vHome from "@/components/Pages/vHome";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'HomePage',
-    component: HomePage
+    path: "/",
+    name: "vHome",
+    component: vHome,
   },
   {
-    path: '*',
-    name: 'NotFound',
-    redirect: HomePage
-  }
-]
+    path: "*",
+    name: "NotFound",
+    redirect: vHome,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
