@@ -2,7 +2,7 @@
   <div class="menu-tag" @click.stop="">
     <ul class="menu-tag__list">
       <li class="menu-tag__item" v-for="item in tagList" :key="item.id">
-        <Tag :item="item" :type="type" :tags="tags" />
+        <v-tag :item="item" :type="type" :tags="tags" />
 
         <div class="menu-tag__btn">
           <i
@@ -17,7 +17,7 @@
       </li>
     </ul>
 
-    <Modal
+    <v-modal
       title="Edit hashtag"
       v-if="showEditModal"
       @closeModal="(showEditModal = !showEditModal), (errorName = '')"
@@ -25,7 +25,7 @@
       <div slot="body" class="modal__info">
         <form @submit.prevent="">
           <div class="modal__input">
-            <Input
+            <v-input
               :value="newTag.tag"
               placeholder="Name"
               :error="errorName"
@@ -34,7 +34,7 @@
           </div>
 
           <div class="modal__color">
-            <ColorMenu
+            <color-menu
               :activeColor="newTag.color"
               @clickColor="newTag.color = $event"
             />
@@ -45,30 +45,29 @@
               class="bx bx-trash modal__icon"
               @click="showEditModal = !showEditModal"
             />
-            <Button title="Create" color="green" @click="onSubmitEditTag" />
+            <v-button title="Create" color="green" @click="onSubmitEditTag" />
           </div>
         </form>
       </div>
-    </Modal>
+    </v-modal>
   </div>
 </template>
 
 <script>
-import "./MenuTag.scss";
-import Tag from "@/components/UI/Tag/Tag";
-import Modal from "@/components/commons/Modal/Modal";
-import Button from "@/components/UI/Button/Button";
-import ColorMenu from "@/components/commons/ColorMenu/ColorMenu";
-import Input from "@/components/commons/Input/Input";
+import vTag from "@/components/UI/vTag";
+import vModal from "@/components/commons/vModal";
+import vButton from "@/components/UI/vButton";
+import vInput from "@/components/commons/vInput";
+import colorMenu from "@/components/commons/colorMenu";
 
 export default {
-  name: "MenuTag",
+  name: "menu-tag",
   components: {
-    Tag,
-    Modal,
-    Button,
-    ColorMenu,
-    Input,
+    vTag,
+    vModal,
+    vButton,
+    vInput,
+    colorMenu,
   },
   data() {
     return {
@@ -126,3 +125,59 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "@/assets/styles/variables.scss";
+
+.menu-tag {
+  width: 325px;
+  background-color: $backg-form-white;
+  padding: 30px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 10;
+
+  .menu-tag__list {
+    display: flex;
+    flex-direction: column;
+
+    .menu-tag__item {
+      @extend %flex-center-between;
+      margin-bottom: 7px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        .menu-tag__btn {
+          display: block;
+        }
+      }
+
+      .menu-tag__btn {
+        display: none;
+
+        .menu-tag__icon {
+          cursor: pointer;
+          font-size: 20px;
+          margin-right: 17px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          &.menu-tag__icon_edit {
+            color: $green;
+          }
+
+          &.menu-tag__icon_del {
+            color: $red;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

@@ -1,3 +1,39 @@
+<template>
+  <div class="modal" @click="$emit('closeModal')">
+    <div class="modal__content" @click.stop="">
+      <div class="modal__header">
+        <span class="modal__title"> {{ title }} </span>
+      </div>
+
+      <div class="modal__body">
+        <slot name="body">
+          Not Found
+        </slot>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "v-modal",
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
+  mounted() {
+    document.body.addEventListener("keyup", (event) => {
+      if (event.key === "Escape") {
+        this.$emit("closeModal");
+      }
+    });
+  },
+};
+</script>
+
+<style lang="scss">
 @import "@/assets/styles/variables.scss";
 
 .modal {
@@ -63,3 +99,4 @@
     }
   }
 }
+</style>

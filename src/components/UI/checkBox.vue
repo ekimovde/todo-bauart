@@ -1,3 +1,33 @@
+<template>
+  <div class="check-box" @click="$emit('onClick', id)">
+    <input
+      type="checkbox"
+      class="check-box_custom"
+      id="checkbox"
+      :name="id"
+      :checked="status"
+    />
+    <label :for="id" class="check-box_label"></label>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "check-box",
+  props: {
+    status: {
+      type: Boolean,
+      required: false,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+};
+</script>
+
+<style lang="scss">
 @import "@/assets/styles/variables.scss";
 
 .check-box {
@@ -102,3 +132,4 @@
     }
   }
 }
+</style>

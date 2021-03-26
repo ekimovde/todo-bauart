@@ -2,7 +2,7 @@
   <div class="home" @click="showMenu = false">
     <div class="home__top">
       <div class="home__input">
-        <InputTask
+        <input-task
           :error="errorNameTask"
           placeholder="Name Task"
           @value="dataTask.descr = $event"
@@ -22,13 +22,13 @@
 
       <div class="home__buttons">
         <div class="home__block-btn" @click.stop="">
-          <Button
+          <v-button
             title="All Hashtags"
             color="blue"
             @click="showMenu = !showMenu"
           />
 
-          <MenuTag
+          <menu-tag
             v-if="showMenu"
             :tagList="tagList"
             type="menu"
@@ -38,13 +38,13 @@
         </div>
 
         <div class="home__block-btn">
-          <Button
+          <v-button
             title="New Hashtag"
             color="green"
             @click="showModal = !showModal"
           />
 
-          <Modal
+          <v-modal
             title="Create new hashtag"
             v-if="showModal"
             @closeModal="(showModal = !showModal), (errorNameTag = '')"
@@ -52,7 +52,7 @@
             <div slot="body" class="modal__info">
               <form @submit.prevent="">
                 <div class="modal__input">
-                  <Input
+                  <v-input
                     placeholder="Name"
                     :error="errorNameTag"
                     @value="dataTag.tag = $event"
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="modal__color">
-                  <ColorMenu
+                  <color-menu
                     :activeColor="dataTag.color"
                     @clickColor="clickColor($event)"
                   />
@@ -71,16 +71,16 @@
                     class="bx bx-trash modal__icon"
                     @click="showModal = !showModal"
                   />
-                  <Button title="Create" color="green" @click="addNewTag" />
+                  <v-button title="Create" color="green" @click="addNewTag" />
                 </div>
               </form>
             </div>
-          </Modal>
+          </v-modal>
         </div>
       </div>
 
       <div class="home__tags" v-if="tagList.length">
-        <TagList :tagList="tagList" type="sort" />
+        <tag-list :tagList="tagList" type="sort" />
       </div>
     </div>
 
@@ -90,34 +90,36 @@
         v-if="loading"
       ></i>
 
-      <TaskList :taskList="filterListByTag" v-if="!loading" />
+      <task-list :taskList="filterListByTag" v-if="!loading" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+
 import "./Home.scss";
-import InputTask from "@/components/commons/InputTask/InputTask";
-import TagList from "@/components/commons/TagList/TagList";
-import TaskList from "@/components/commons/TaskList/TaskList";
-import Button from "@/components/UI/Button/Button";
-import Modal from "@/components/commons/Modal/Modal";
-import Input from "@/components/commons/Input/Input";
-import ColorMenu from "@/components/commons/ColorMenu/ColorMenu";
-import MenuTag from "@/components/commons/MenuTag/MenuTag";
+
+import inputTask from "@/components/commons/inputTask";
+import vButton from "@/components/UI/vButton";
+import vInput from "@/components/commons/vInput";
+import colorMenu from "@/components/commons/colorMenu";
+import taskList from "@/components/commons/taskList";
+import tagList from "@/components/commons/tagList";
+import vModal from "@/components/commons/vModal";
+import menuTag from "@/components/commons/menuTag";
 
 export default {
   name: "Home",
   components: {
-    InputTask,
-    TagList,
-    TaskList,
-    Button,
-    Modal,
-    Input,
-    ColorMenu,
-    MenuTag,
+    inputTask,
+    vButton,
+    taskList,
+    colorMenu,
+    vInput,
+    tagList,
+    vModal,
+    menuTag,
   },
   data() {
     return {

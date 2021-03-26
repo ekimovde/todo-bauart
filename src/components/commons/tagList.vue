@@ -1,18 +1,17 @@
 <template>
   <div class="tag-list">
-    <Tag :item="tagDefault" v-if="type === 'sort'" type="sort" />
-    <Tag v-for="item in tagList" :key="item.id" :item="item" :type="type" />
+    <v-tag :item="tagDefault" v-if="type === 'sort'" type="sort" />
+    <v-tag v-for="item in tagList" :key="item.id" :item="item" :type="type" />
   </div>
 </template>
 
 <script>
-import "./TagList.scss";
-import Tag from "@/components/UI/Tag/Tag";
+import vTag from "@/components/UI/vTag";
 
 export default {
-  name: "TagList",
+  name: "tag-list",
   components: {
-    Tag,
+    vTag,
   },
   data() {
     return {
@@ -34,3 +33,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "@/assets/styles/variables.scss";
+
+.tag-list {
+  @extend %flex-center;
+  flex-wrap: wrap;
+}
+</style>

@@ -1,3 +1,42 @@
+<template>
+  <div class="color-item">
+    <div
+      class="color-item__border"
+      :class="{ 'color-item__border_active': color === activeColor }"
+    >
+      <div
+        class="color-item__circle"
+        @click="$emit('clickColor', color)"
+        :class="{
+          ['color-item__circle_' + color]: color,
+        }"
+        :value="color"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "color-item",
+  props: {
+    color: {
+      type: String,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: false,
+    },
+    activeColor: {
+      type: String,
+      required: false,
+    },
+  },
+};
+</script>
+
+<style lang="scss">
 @import "@/assets/styles/variables.scss";
 
 .color-item {
@@ -52,3 +91,4 @@
     }
   }
 }
+</style>

@@ -1,3 +1,40 @@
+<template>
+  <div class="navbar">
+    <div class="navbar__info">
+      <div class="navbar__text">
+        <h3 class="navbar__title">
+          Welcome
+        </h3>
+
+        <span class="navbar__date">
+          19 Sun
+        </span>
+      </div>
+
+      <div class="navbar__search">
+        <i class="bx bx-search navbar__icon"></i>
+        <v-input placeholder="Search" />
+      </div>
+    </div>
+
+    <div class="navbar__link">
+      <i class="bx bx-user navbar__icon" />
+
+      <i class="bx bx-link-external navbar__icon"></i>
+    </div>
+  </div>
+</template>
+
+<script>
+import vInput from "@/components/commons/vInput";
+
+export default {
+  name: "v-navbar",
+  components: { vInput },
+};
+</script>
+
+<style lang="scss">
 @import "@/assets/styles/variables.scss";
 
 .navbar {
@@ -55,3 +92,4 @@
     }
   }
 }
+</style>

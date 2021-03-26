@@ -5,7 +5,7 @@
     </span>
 
     <ul class="color-menu__list">
-      <ColorItem
+      <color-item
         v-for="(color, index) in colors"
         :key="index"
         :color="color"
@@ -18,13 +18,12 @@
 </template>
 
 <script>
-import "./ColorMenu.scss";
-import ColorItem from "@/components/UI/ColorItem/ColorItem";
+import colorItem from "@/components/UI/colorItem";
 
 export default {
-  name: "ColorMenu",
+  name: "color-menu",
   components: {
-    ColorItem,
+    colorItem,
   },
   props: {
     activeColor: {
@@ -40,3 +39,22 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "@/assets/styles/variables.scss";
+
+.color-menu {
+  @extend %flex-center;
+
+  .color-menu__text {
+    color: $blue-text;
+    font-size: 16px;
+    margin-right: 30px;
+  }
+
+  .color-menu__list {
+    @extend %flex-center;
+    flex-wrap: wrap;
+  }
+}
+</style>

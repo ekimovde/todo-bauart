@@ -1,17 +1,16 @@
 <template>
   <div class="task-list">
-    <TaskItem v-for="item in taskList" :key="item.id" :item="item" />
+    <task-item v-for="item in taskList" :key="item.id" :item="item" />
   </div>
 </template>
 
 <script>
-import "./TaskList.scss";
-import TaskItem from "@/components/UI/TaskItem/TaskItem";
+import taskItem from "@/components/UI/taskItem";
 
 export default {
-  name: "TaskList",
+  name: "task-list",
   components: {
-    TaskItem,
+    taskItem,
   },
   props: {
     taskList: {
@@ -21,3 +20,5 @@ export default {
   },
 };
 </script>
+
+<style lang="scss"></style>
